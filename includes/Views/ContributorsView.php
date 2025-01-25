@@ -54,7 +54,11 @@ class ContributorsView {
 		$template_file = WPCG_PLUGIN_DIR . "templates/{$template}.php";
 
 		if ( file_exists( $template_file ) ) {
-			extract( $data );
+			// Pass data to template scope
+			$noteworthy_contributors = $data['noteworthy_contributors'] ?? array();
+			$core_contributors       = $data['core_contributors'] ?? array();
+			$version                 = $data['version'] ?? '';
+
 			include $template_file;
 		}
 	}
@@ -66,11 +70,22 @@ class ContributorsView {
 	 * @param array  $data Data to pass to partial.
 	 * @return void
 	 */
-	public function get_template_partial( $partial, $data = array() ) {
+	public function get_template_partial( $partial, $data ) {
 		$partial_file = WPCG_PLUGIN_DIR . "templates/partials/{$partial}.php";
 
 		if ( file_exists( $partial_file ) ) {
-			extract( $data );
+			// Pass specific data needed for each partial
+			switch ( $partial ) {
+				case 'noteworthy-contributors':
+					$contributors = $data['contributors'] ?? array();
+					break;
+				case 'core-contributors':
+					$contributors = $data['contributors'] ?? array();
+					break;
+				default:
+					$contributors = array();
+			}
+
 			include $partial_file;
 		}
 	}
@@ -104,7 +119,9 @@ class ContributorsView {
 	 * @return array
 	 */
 	private function get_core_contributors( $data ) {
-		return isset( $data['groups']['props']['data'] ) ? $data['groups']['props']['data'] : array();
+		return isset( $data['groups']['props']['data'] )
+			? $data['groups']['props']['data']
+			: array();
 	}
 
 	/**

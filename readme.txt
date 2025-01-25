@@ -1,12 +1,10 @@
 === Contributors Gallery ===
 Contributors: huzaifaalmesbah
 Tags: contributors, credits, core-contributors, wordpress-contributors
-Requires at least: 5.2
-Tested up to: 6.7.1
 Stable tag: 1.0.0
-Requires PHP: 7.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Tested up to: 6.7
 
 Display WordPress version contributors beautifully with avatars and profile links.
 
@@ -52,7 +50,6 @@ The plugin caches the data for 24 hours to ensure optimal performance.
 = Can I style the output differently? =
 
 Yes, you can override the default styles by adding custom CSS to your theme.
-
 
 == Changelog ==
 

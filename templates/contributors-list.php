@@ -11,6 +11,11 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
+// Ensure variables are set
+$noteworthy_contributors = $noteworthy_contributors ?? array();
+$core_contributors       = $core_contributors ?? array();
+$version                 = $version ?? '';
 ?>
 
 <div class="wpcg-contributors-wrap">
@@ -31,17 +36,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	// Include noteworthy contributors section
 	$this->get_template_partial(
 		'noteworthy-contributors',
-		array(
-			'contributors' => $noteworthy_contributors,
-		)
+		array( 'contributors' => $noteworthy_contributors )
 	);
 
 	// Include core contributors section
 	$this->get_template_partial(
 		'core-contributors',
-		array(
-			'contributors' => $core_contributors,
-		)
+		array( 'contributors' => $core_contributors )
 	);
 	?>
 </div>
