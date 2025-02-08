@@ -7,6 +7,20 @@ namespace WPCG\Services;
 class ApiService {
 
 	/**
+	 * Latest Version instance
+	 *
+	 * @var WPVersionFetcher
+	 */
+	private $latest_version;
+
+	/**
+	 * Constructor
+	 */
+	public function __construct() {
+		$this->latest_version = new WPVersionFetcher();
+	}
+
+	/**
 	 * Get contributors data
 	 *
 	 * @param string $version WordPress version.
@@ -14,7 +28,7 @@ class ApiService {
 	 */
 	public function get_contributors_data( $version = '' ) {
 		if ( empty( $version ) ) {
-			$version = get_bloginfo( 'version' );
+			$version = $this->latest_version->get_latest_version();
 		}
 
 		$transient_key = 'wpcg_contributors_' . $version;
