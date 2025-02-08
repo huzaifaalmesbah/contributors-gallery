@@ -9,16 +9,19 @@ class ContributorsView {
 	/**
 	 * Render contributors list
 	 *
-	 * @param array $data Contributors data.
+	 * @param array   $data             Contributors data.
+	 * @param boolean $version_switcher Whether to show version switcher.
 	 * @return string
 	 */
-	public function render( $data ) {
+	public function render( $data, $version_switcher = true ) {
 		if ( empty( $data ) || ! isset( $data['groups'] ) ) {
 			return $this->render_error_message();
 		}
 
 		// Prepare data for templates
-		$view_data = $this->prepare_template_data( $data );
+		$view_data                     = $this->prepare_template_data( $data, $version_switcher );
+		$view_data['version_switcher'] = $version_switcher;
+		$view_data['versions']         = $this->get_available_versions();
 
 		// Start output buffering
 		ob_start();
@@ -32,14 +35,17 @@ class ContributorsView {
 	/**
 	 * Prepare data for templates
 	 *
-	 * @param array $data Raw API data.
+	 * @param array   $data             Raw API data.
+	 * @param boolean $version_switcher Whether to show version switcher.
 	 * @return array Prepared data for templates
 	 */
-	private function prepare_template_data( $data ) {
+	private function prepare_template_data( $data, $version_switcher = true ) {
 		return array(
 			'version'                 => $data['data']['version'] ?? '',
 			'noteworthy_contributors' => $this->get_noteworthy_contributors( $data ),
 			'core_contributors'       => $this->get_core_contributors( $data ),
+			'version_switcher'        => $version_switcher,
+			'versions'                => array(),
 		);
 	}
 
@@ -58,6 +64,8 @@ class ContributorsView {
 			$noteworthy_contributors = $data['noteworthy_contributors'] ?? array();
 			$core_contributors       = $data['core_contributors'] ?? array();
 			$version                 = $data['version'] ?? '';
+			$version_switcher        = $data['version_switcher'] ?? true;
+			$versions                = $data['versions'] ?? array();
 
 			include $template_file;
 		}
@@ -74,18 +82,7 @@ class ContributorsView {
 		$partial_file = WPCG_PLUGIN_DIR . "templates/partials/{$partial}.php";
 
 		if ( file_exists( $partial_file ) ) {
-			// Pass specific data needed for each partial
-			switch ( $partial ) {
-				case 'noteworthy-contributors':
-					$contributors = $data['contributors'] ?? array();
-					break;
-				case 'core-contributors':
-					$contributors = $data['contributors'] ?? array();
-					break;
-				default:
-					$contributors = array();
-			}
-
+			$contributors = $data['contributors'] ?? array();
 			include $partial_file;
 		}
 	}
@@ -110,6 +107,24 @@ class ContributorsView {
 		}
 
 		return $all_noteworthy_contributors;
+	}
+
+	/**
+	 * Get available WordPress versions
+	 *
+	 * @return array
+	 */
+	private function get_available_versions() {
+		$current_version = get_bloginfo( 'version' );
+		$major_version   = (float) $current_version;
+		$versions        = array();
+
+		// Add versions from 5.0 to current version
+		for ( $v = 5.0; $v <= $major_version; $v += 0.1 ) {
+			$versions[] = number_format( $v, 1 );
+		}
+
+		return $versions;
 	}
 
 	/**

@@ -2,14 +2,47 @@
  * WordPress Contributors Gallery Styles
  */
 
- .wpcg-contributors-wrap {
+.wpcg-contributors-wrap {
     max-width: 1200px;
     margin: 2rem auto;
     padding: 0 1rem;
+    position: relative;
 }
 
-.wpcg-contributors-wrap h2 {
-    text-align: center;
+.wpcg-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.wpcg-header-title {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wpcg-header-controls {
+    flex: 0 0 auto;
+    margin-left: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+}
+
+.wpcg-version-select {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    min-width: 200px;
+}
+
+.wpcg-contributors-wrap h2,
+.pages-content .wpcg-contributors-wrap h2 {
+    margin: 0;
 }
 
 .wpcg-section {
@@ -31,6 +64,7 @@
 .wpcg-section.wpcg-core .wpcg-contributors-inline a:hover {
     text-decoration: underline;
 }
+
 .wpcg-section h3 {
     margin: 0 0 1.25rem;
     padding-bottom: 0.625rem;
@@ -47,6 +81,18 @@
 }
 
 @media screen and (max-width: 782px) {
+    .wpcg-version-select {
+        position: static;
+        margin-bottom: 1rem;
+        width: 100%;
+    }
+    
+    .wpcg-contributors-wrap h2 {
+        margin-top: 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
     .wpcg-contributor-list {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 1rem;
@@ -123,4 +169,57 @@
 .wpcg-contributors-inline a:hover {
     color: #135e96;
     text-decoration: underline;
+}
+
+.wpcg-contributors-wrap {
+    position: relative;
+}
+
+.wpcg-loading-overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: 1000;
+    padding-top: 2rem;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.wpcg-loading-overlay img {
+    width: 150px;
+    height: 150px;
+}
+
+.wpcg-contributors-wrap.loading .wpcg-loading-overlay {
+    display: flex;
+}
+
+.wpcg-contributors-wrap.loading > *:not(.wpcg-loading-overlay):not(.wpcg-version-select) {
+    opacity: 0.5;
+}
+
+.wpcg-loading-overlay.active {
+    display: flex;
+}
+
+.wpcg-loading-overlay img {
+    width: 150px;
+    height: 150px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
