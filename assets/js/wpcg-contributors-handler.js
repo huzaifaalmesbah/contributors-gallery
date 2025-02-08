@@ -7,11 +7,26 @@
         }
 
         init() {
-            $(document).on('change', '.wpcg-version-select', this.handleVersionChange.bind(this));
+            $(document).on('click', '.wpcg-version-input', this.toggleDropdown.bind(this));
+            $(document).on('click', '.wpcg-version-item', this.handleVersionChange.bind(this));
+            $(document).on('click', (e) => {
+                if (!$(e.target).closest('.wpcg-version-dropdown').length) {
+                    $('.wpcg-version-dropdown').removeClass('active');
+                }
+            });
+        }
+
+        toggleDropdown(e) {
+            const dropdown = $(e.target).closest('.wpcg-version-dropdown');
+            $('.wpcg-version-dropdown').not(dropdown).removeClass('active');
+            dropdown.toggleClass('active');
         }
 
         handleVersionChange(e) {
-            const version = $(e.target).val();
+            const item = $(e.target);
+            const version = item.data('value');
+            const dropdown = item.closest('.wpcg-version-dropdown');
+            const input = dropdown.find('.wpcg-version-input');
             const container = $(e.target).closest('.wpcg-contributors-wrap');
 
             $.ajax({
