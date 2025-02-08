@@ -1,7 +1,7 @@
 === Contributors Gallery ===
 Contributors: huzaifaalmesbah
 Tags: contributors, credits, core-contributors, wordpress-contributors
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tested up to: 6.7
@@ -68,6 +68,11 @@ The plugin caches the data for 24 hours to ensure optimal performance.
 Yes, you can override the default styles by adding custom CSS to your theme.
 
 == Changelog ==
+
+= 1.0.2 =
+* Enhanced API service with improved caching
+* Added WPVersionFetcher service for better version management
+* Improved code documentation and inline comments
 
 = 1.0.1 =
 * Added version selector improvements

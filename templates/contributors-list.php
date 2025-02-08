@@ -37,15 +37,23 @@ $version                 = $version ?? '';
 		<div class="wpcg-header-controls">
 			<?php if ( $version_switcher ) : ?>
 				<div class="wpcg-version-dropdown">
-					<input type="text" class="wpcg-version-input" readonly value="<?php printf( esc_html__( 'WordPress %s', 'contributors-gallery' ), esc_html( $version ) ); ?>">
+					<input type="text" class="wpcg-version-input" readonly value="
+					<?php
+					/* translators: %s: WordPress version number */
+					printf( esc_html__( 'WordPress %s', 'contributors-gallery' ), esc_html( $version ) );
+					?>
+					">
 					<ul class="wpcg-version-list">
-						<?php 
+						<?php
 						// Sort versions in descending order
-						rsort($versions, SORT_NATURAL);
-						foreach ( $versions as $v ) : 
-						?>
+						rsort( $versions, SORT_NATURAL );
+						foreach ( $versions as $v ) :
+							?>
 							<li class="wpcg-version-item <?php echo $v === $version ? 'active' : ''; ?>" data-value="<?php echo esc_attr( $v ); ?>">
-								<?php printf( esc_html__( 'WordPress %s', 'contributors-gallery' ), esc_html( $v ) ); ?>
+								<?php
+								/* translators: %s: WordPress version number */
+								printf( esc_html__( 'WordPress %s', 'contributors-gallery' ), esc_html( $v ) );
+								?>
 							</li>
 						<?php endforeach; ?>
 					</ul>

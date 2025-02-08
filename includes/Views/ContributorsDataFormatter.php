@@ -7,89 +7,95 @@ use WPCG\Services\WPVersionFetcher;
  * Contributors Data Formatter Class
  *
  * Handles data preparation and formatting for the Contributors Gallery plugin.
+ *
+ * @since 1.0.2
  */
 class ContributorsDataFormatter {
 
-    /**
-     * Latest Version Fetcher instance
-     *
-     * @var WPVersionFetcher
-     */
-    private $latest_version_fetcher;
+	/**
+	 * Latest Version Fetcher instance
+	 *
+	 * @var WPVersionFetcher
+	 */
+	private $latest_version_fetcher;
 
-    /**
-     * Constructor
-     */
-    public function __construct() {
-        $this->latest_version_fetcher = new WPVersionFetcher();
-    }
+	/**
+	 * Constructor
+	 *
+	 * @since 1.0.2
+	 */
+	public function __construct() {
+		$this->latest_version_fetcher = new WPVersionFetcher();
+	}
 
-    /**
-     * Prepare data for templates
-     *
-     * @param array   $data             Raw API data.
-     * @param boolean $version_switcher Whether to show version switcher.
-     * @return array Prepared data for templates
-     */
-    public function prepare_template_data($data, $version_switcher = true) {
-        return array(
-            'version'                 => $data['data']['version'] ?? '',
-            'noteworthy_contributors' => $this->get_noteworthy_contributors($data),
-            'core_contributors'       => $this->get_core_contributors($data),
-            'version_switcher'        => $version_switcher,
-            'versions'                => $this->get_available_versions(),
-        );
-    }
+	/**
+	 * Prepare data for templates
+	 *
+	 * @since 1.0.2
+	 * @param array   $data             Raw API data.
+	 * @param boolean $version_switcher Whether to show version switcher.
+	 * @return array Prepared data for templates
+	 */
+	public function prepare_template_data( $data, $version_switcher = true ) {
+		return array(
+			'version'                 => $data['data']['version'] ?? '',
+			'noteworthy_contributors' => $this->get_noteworthy_contributors( $data ),
+			'core_contributors'       => $this->get_core_contributors( $data ),
+			'version_switcher'        => $version_switcher,
+			'versions'                => $this->get_available_versions(),
+		);
+	}
 
-    /**
-     * Get noteworthy contributors
-     *
-     * @param array $data API response data.
-     * @return array
-     */
-    private function get_noteworthy_contributors($data) {
-        $noteworthy_groups           = array('core-developers', 'contributing-developers');
-        $all_noteworthy_contributors = array();
+	/**
+	 * Get noteworthy contributors
+	 *
+	 * @since 1.0.2
+	 * @param array $data API response data.
+	 * @return array
+	 */
+	private function get_noteworthy_contributors( $data ) {
+		$noteworthy_groups           = array( 'core-developers', 'contributing-developers' );
+		$all_noteworthy_contributors = array();
 
-        foreach ($noteworthy_groups as $group) {
-            if (isset($data['groups'][$group]['data'])) {
-                $all_noteworthy_contributors = array_merge(
-                    $all_noteworthy_contributors,
-                    $data['groups'][$group]['data']
-                );
-            }
-        }
+		foreach ( $noteworthy_groups as $group ) {
+			if ( isset( $data['groups'][ $group ]['data'] ) ) {
+				$all_noteworthy_contributors = array_merge(
+					$all_noteworthy_contributors,
+					$data['groups'][ $group ]['data']
+				);
+			}
+		}
 
-        return $all_noteworthy_contributors;
-    }
+		return $all_noteworthy_contributors;
+	}
 
-    /**
-     * Get available WordPress versions
-     *
-     * @return array
-     */
-    private function get_available_versions() {
-        $latest_version = $this->latest_version_fetcher->get_latest_version();
-        $major_version  = (float) $latest_version;
-        $versions       = array();
+	/**
+	 * Get available WordPress versions
+	 *
+	 * @return array
+	 */
+	private function get_available_versions() {
+		$latest_version = $this->latest_version_fetcher->get_latest_version();
+		$major_version  = (float) $latest_version;
+		$versions       = array();
 
-        // Add versions from 5.0 to current version
-        for ($v = 5.0; $v <= $major_version; $v += 0.1) {
-            $versions[] = number_format($v, 1);
-        }
+		// Add versions from 5.0 to current version
+		for ( $v = 5.0; $v <= $major_version; $v += 0.1 ) {
+			$versions[] = number_format( $v, 1 );
+		}
 
-        return $versions;
-    }
+		return $versions;
+	}
 
-    /**
-     * Get core contributors
-     *
-     * @param array $data API response data.
-     * @return array
-     */
-    private function get_core_contributors($data) {
-        return isset($data['groups']['props']['data'])
-            ? $data['groups']['props']['data']
-            : array();
-    }
+	/**
+	 * Get core contributors
+	 *
+	 * @param array $data API response data.
+	 * @return array
+	 */
+	private function get_core_contributors( $data ) {
+		return isset( $data['groups']['props']['data'] )
+			? $data['groups']['props']['data']
+			: array();
+	}
 }
