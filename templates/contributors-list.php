@@ -37,12 +37,7 @@ $version                 = $version ?? '';
 		<div class="wpcg-header-controls">
 			<?php if ( $version_switcher ) : ?>
 				<div class="wpcg-version-dropdown">
-					<input type="text" class="wpcg-version-input" readonly value="
-					<?php
-					/* translators: %s: WordPress version number */
-					printf( esc_html__( 'WordPress %s', 'contributors-gallery' ), esc_html( $version ) );
-					?>
-					">
+					<input type="text" class="wpcg-version-input" readonly value="<?php printf( esc_html__( 'WordPress %s', 'contributors-gallery' ), esc_html( $version ) ); ?>">
 					<ul class="wpcg-version-list">
 						<?php
 						// Sort versions in descending order
