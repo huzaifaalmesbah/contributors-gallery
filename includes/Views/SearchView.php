@@ -53,19 +53,23 @@ class SearchView {
      * @return string
      */
     public function render_search_results($results) {
-        if (!isset($results['total_count']) || !isset($results['versions'])) {
+        if (!isset($results['noteworthy_versions']) || !isset($results['core_versions'])) {
             error_log('WPCG Debug: Invalid search results format');
             return '<div class="wpcg-error">' . esc_html__('Invalid search results format.', 'contributors-gallery') . '</div>';
         }
 
         error_log('WPCG Debug: Preparing to render search results');
-        error_log('WPCG Debug: Results data - Total Count: ' . $results['total_count'] . ', Versions: ' . implode(', ', $results['versions']));
+        error_log('WPCG Debug: Results data - Noteworthy: ' . count($results['noteworthy_versions']) . ', Core: ' . count($results['core_versions']));
 
         ob_start();
         $results = array(
-            'total_count' => intval($results['total_count']),
-            'versions' => array_map('sanitize_text_field', $results['versions']),
-            'username' => isset($_POST['username']) ? sanitize_text_field($_POST['username']) : ''
+            'username' => sanitize_text_field($results['username']),
+            'display_name' => sanitize_text_field($results['display_name']),
+            'role' => sanitize_text_field($results['role']),
+            'noteworthy_versions' => array_map('sanitize_text_field', $results['noteworthy_versions']),
+            'core_versions' => array_map('sanitize_text_field', $results['core_versions']),
+            'total_noteworthy' => count($results['noteworthy_versions']),
+            'total_core' => count($results['core_versions'])
         );
         include WPCG_PLUGIN_DIR . 'templates/partials/search-results.php';
         $output = ob_get_clean();

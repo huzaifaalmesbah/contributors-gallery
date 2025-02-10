@@ -108,7 +108,7 @@ class SearchController {
 
         $results = $this->search_contributor($username);
         
-        if (empty($results['versions'])) {
+        if (empty($results['noteworthy_versions']) && empty($results['core_versions'])) {
             wp_send_json_error(array(
                 'message' => sprintf(
                     __('No contributions found for %s', 'contributors-gallery'),
@@ -137,8 +137,10 @@ class SearchController {
      */
     private function search_contributor($username) {
         $versions = $this->version_fetcher->get_available_versions();
-        $found_versions = array();
-        $total_count = 0;
+        $noteworthy_versions = array();
+        $core_versions = array();
+        $display_name = '';
+        $role = '';
 
         foreach ($versions as $version) {
             $transient_key = 'wpcg_contributors_' . $version;
@@ -151,23 +153,35 @@ class SearchController {
                 }
             }
 
-            $found = false;
-            foreach ($contributors_data['groups'] as $group) {
-                if (isset($group['data'][$username])) {
-                    $found = true;
-                    $total_count++;
-                    break;
+            // Check for noteworthy contributors (core-developers and contributing-developers)
+            if (isset($contributors_data['groups']['core-developers']['data'][$username])) {
+                $noteworthy_versions[] = $version;
+                if (empty($display_name)) {
+                    $display_name = $contributors_data['groups']['core-developers']['data'][$username][0];
+                    $role = $contributors_data['groups']['core-developers']['data'][$username][3];
                 }
-            }
-
-            if ($found) {
-                $found_versions[] = $version;
+            } elseif (isset($contributors_data['groups']['contributing-developers']['data'][$username])) {
+                $noteworthy_versions[] = $version;
+                if (empty($display_name)) {
+                    $display_name = $contributors_data['groups']['contributing-developers']['data'][$username][0];
+                    $role = $contributors_data['groups']['contributing-developers']['data'][$username][3];
+                }
+            } elseif (isset($contributors_data['groups']['props']['data'][$username])) {
+                $core_versions[] = $version;
+                if (empty($display_name)) {
+                    $display_name = $contributors_data['groups']['props']['data'][$username];
+                }
             }
         }
 
         return array(
-            'total_count' => $total_count,
-            'versions' => $found_versions
+            'username' => $username,
+            'display_name' => $display_name ?: $username,
+            'role' => $role,
+            'noteworthy_versions' => $noteworthy_versions,
+            'core_versions' => $core_versions,
+            'total_noteworthy' => count($noteworthy_versions),
+            'total_core' => count($core_versions)
         );
     }
 }
