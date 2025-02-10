@@ -6,7 +6,7 @@ namespace WPCG\Views;
  *
  * Handles the search form rendering and results display.
  *
- * @since 1.0.4
+ * @since 1.1.0
  */
 class SearchView {
     /**

@@ -1,7 +1,7 @@
 === Contributors Gallery ===
 Contributors: huzaifaalmesbah
 Tags: contributors, credits, core-contributors, wordpress-contributors
-Stable tag: 1.0.3
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tested up to: 6.7
@@ -78,7 +78,7 @@ Yes, you can override the default styles by adding custom CSS to your theme.
 
 == Changelog ==
 
-= 1.0.3 =
+= 1.1.0 =
 * Enhanced version selector with support for WordPress versions from 3.2 onwards
 * Improved version management using WordPress.org API integration
 * Added comprehensive version support documentation
@@ -98,7 +98,7 @@ Yes, you can override the default styles by adding custom CSS to your theme.
 
 == Upgrade Notice ==
 
-= 1.0.3 =
+= 1.1.0 =
 This update adds comprehensive support for WordPress versions from 3.2 onwards and improves the version selector functionality.
 
 = 1.0.0 =

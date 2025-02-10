@@ -9,21 +9,22 @@ if (!defined('ABSPATH')) exit;
 ?>
 <div class="wpcg-search-results-content">
     <div class="wpcg-search-summary">
-        <h3 class="wpcg-search-count">
-            <?php
+        <h3 class="wpcg-search-count"><?php
             printf(
                 /* translators: 1: username, 2: number of WordPress versions */
-                esc_html(_n(
-                    '%1$s contributed to %2$d WordPress version',
-                    '%1$s contributed to %2$d WordPress versions',
+                _n(
+                    '%1$s: Contributed on %2$d WP Version',
+                    '%1$s: Contributed on %2$d WP Versions',
                     $results['total_count'],
                     'contributors-gallery'
-                )),
+                ),
                 esc_html($results['username']),
                 esc_html($results['total_count'])
             );
-            ?>
-        </h3>
+        ?></h3>
+        <a href="https://profiles.wordpress.org/<?php echo esc_attr($results['username']); ?>/" class="wpcg-profile-button" target="_blank">
+            <?php esc_html_e('Visit WP Profile', 'contributors-gallery'); ?>
+        </a>
     </div>
 
     <?php if (!empty($results['versions'])) : ?>
@@ -32,13 +33,7 @@ if (!defined('ABSPATH')) exit;
             <ul>
                 <?php foreach ($results['versions'] as $version) : ?>
                     <li>
-                        <?php
-                        printf(
-                            /* translators: %s: WordPress version number */
-                            esc_html__('WordPress %s', 'contributors-gallery'),
-                            esc_html($version)
-                        );
-                        ?>
+<?php echo esc_html($version); ?>
                     </li>
                 <?php endforeach; ?>
             </ul>

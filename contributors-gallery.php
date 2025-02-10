@@ -3,7 +3,7 @@
  * Plugin Name: Contributors Gallery
  * Plugin URI: https://wordpress.org/plugins/contributors-gallery/
  * Description: Display WordPress contributors in a beautiful gallery with version switcher.
- * Version: 1.0.3
+ * Version: 1.1.0
  * Requires at least: 5.2
  * Requires PHP: 7.2
  * Author: Huzaifa Al Mesbah
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Define plugin constants
-define( 'WPCG_VERSION', '1.0.3' );
+define( 'WPCG_VERSION', '1.1.0' );
 define( 'WPCG_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'WPCG_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 

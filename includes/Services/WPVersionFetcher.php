@@ -34,7 +34,7 @@ class WPVersionFetcher {
 	/**
 	 * Get all available WordPress versions
 	 *
-	 * @since 1.0.3
+	 * @since 1.1.0
 	 * @return array List of WordPress versions
 	 */
 	public function get_available_versions() {
@@ -56,7 +56,7 @@ class WPVersionFetcher {
 	/**
 	 * Fetch available versions from WordPress.org API
 	 *
-	 * @since 1.0.3
+	 * @since 1.1.0
 	 * @return array List of WordPress versions
 	 */
 	private function fetch_versions_from_api() {

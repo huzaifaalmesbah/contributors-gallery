@@ -10,7 +10,7 @@ use WPCG\Views\SearchView;
  *
  * Handles the contributor search functionality across WordPress versions.
  *
- * @since 1.0.4
+ * @since 1.1.0
  */
 class SearchController {
 
@@ -145,7 +145,10 @@ class SearchController {
             $contributors_data = get_transient($transient_key);
 
             if (!$contributors_data || empty($contributors_data['groups'])) {
-                continue;
+                $contributors_data = $this->api_service->get_contributors_data($version);
+                if (!$contributors_data || empty($contributors_data['groups'])) {
+                    continue;
+                }
             }
 
             $found = false;

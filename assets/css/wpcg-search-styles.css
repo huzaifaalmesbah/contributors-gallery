@@ -70,6 +70,27 @@
     border-bottom: 1px solid #e2e8f0;
 }
 
+.wpcg-search-results-content .wpcg-profile-button {
+    display: inline-block;
+    padding: 5px 15px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #0073aa; /* WordPress.org blue */
+    border: 1px solid #0073aa;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    float: right;
+}
+
+.wpcg-search-results-content .wpcg-profile-button:hover {
+    background-color: #005177;
+    border-color: #005177;
+    color: #ffffff;
+    text-decoration: none;
+}
+
 .wpcg-search-results .wpcg-version-list {
     margin-bottom: 1.5rem;
     position: static;
