@@ -5,9 +5,9 @@ use WPCG\Services\ApiService;
 use WPCG\Views\ContributorsView;
 
 /**
- * Shortcode Controller Class
+ * Contributors Controller Class
  */
-class ShortcodeController {
+class ContributorsController {
 	/**
 	 * API Service instance
 	 *

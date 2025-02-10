@@ -1,7 +1,7 @@
 <?php
 namespace WPCG\Core;
 
-use WPCG\Controllers\ShortcodeController;
+use WPCG\Controllers\ContributorsController;
 use WPCG\Controllers\SearchController;
 
 /**
@@ -40,7 +40,7 @@ class Plugin {
 	 */
 	private function init_hooks() {
 		// Initialize controllers
-		new ShortcodeController();
+		new ContributorsController();
 		new SearchController();
 	}
 }
