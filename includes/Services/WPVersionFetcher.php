@@ -25,10 +25,74 @@ class WPVersionFetcher {
 	private $cache_duration = DAY_IN_SECONDS;
 
 	/**
+	 * Cache key for available versions
+	 *
+	 * @var string
+	 */
+	private $versions_cache_key = 'wpcg_available_versions';
+
+	/**
+	 * Get all available WordPress versions
+	 *
+	 * @since 1.0.3
+	 * @return array List of WordPress versions
+	 */
+	public function get_available_versions() {
+		$cached_versions = get_transient( $this->versions_cache_key );
+
+		if ( false !== $cached_versions ) {
+			return $cached_versions;
+		}
+
+		$versions = $this->fetch_versions_from_api();
+
+		if ( ! empty( $versions ) ) {
+			set_transient( $this->versions_cache_key, $versions, $this->cache_duration );
+		}
+
+		return $versions;
+	}
+
+	/**
+	 * Fetch available versions from WordPress.org API
+	 *
+	 * @since 1.0.3
+	 * @return array List of WordPress versions
+	 */
+	private function fetch_versions_from_api() {
+		$api_response = wp_remote_get( 'https://api.wordpress.org/core/stable-check/1.0/' );
+
+		if ( is_wp_error( $api_response ) ) {
+			return array();
+		}
+
+		$api_body = wp_remote_retrieve_body( $api_response );
+		$data     = json_decode( $api_body, true );
+
+		if ( empty( $data ) ) {
+			return array();
+		}
+
+		$versions = array_keys( $data );
+		
+		// Filter to keep versions with one decimal point (x.y) and >= 3.2
+		$filtered_versions = array_filter($versions, function($version) {
+			if (!preg_match('/^\d+\.\d+$/', $version)) {
+				return false;
+			}
+			return version_compare($version, '3.2', '>=');
+		});
+
+		rsort( $filtered_versions, SORT_NATURAL );
+
+		return array_values( $filtered_versions );
+	}
+
+	/**
 	 * Get the latest WordPress version
 	 *
 	 * @since 1.0.2
-	 * @return string Latest WordPress version number
+	 * @return string Latest WordPress version
 	 */
 	public function get_latest_version() {
 		$cached_version = get_transient( $this->version_cache_key );
@@ -37,36 +101,14 @@ class WPVersionFetcher {
 			return $cached_version;
 		}
 
-		$version = $this->fetch_version_from_api();
+		$versions = $this->get_available_versions();
 
-		if ( $version ) {
-			set_transient( $this->version_cache_key, $version, $this->cache_duration );
+		if ( ! empty( $versions ) ) {
+			$latest_version = $versions[0];
+			set_transient( $this->version_cache_key, $latest_version, $this->cache_duration );
+			return $latest_version;
 		}
 
-		if ( $version ) {
-			return $version;
-		}
-		return get_bloginfo( 'version' );
-	}
-
-	/**
-	 * Fetch version from WordPress.org API
-	 *
-	 * @since 1.0.2
-	 * @return string|false Version number or false on failure
-	 */
-	private function fetch_version_from_api() {
-		$api_response = wp_remote_get( 'https://api.wordpress.org/core/version-check/1.7/' );
-
-		if ( is_wp_error( $api_response ) ) {
-			return false;
-		}
-
-		$api_body     = wp_remote_retrieve_body( $api_response );
-		$version_data = json_decode( $api_body, true );
-
-		return isset( $version_data['offers'][0]['version'] )
-			? $version_data['offers'][0]['version']
-			: false;
+		return '';
 	}
 }

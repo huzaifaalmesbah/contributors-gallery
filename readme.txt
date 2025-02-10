@@ -1,7 +1,7 @@
 === Contributors Gallery ===
 Contributors: huzaifaalmesbah
 Tags: contributors, credits, core-contributors, wordpress-contributors
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tested up to: 6.7
@@ -14,8 +14,8 @@ WordPress Contributors Gallery is a powerful yet simple plugin that showcases th
 
 Features:
 
-* Display contributors for any WordPress version
-* Interactive version selector (enabled by default)
+* Display contributors for any WordPress version (from 3.2 onwards)
+* Interactive version selector with comprehensive version support
 * Separate sections for noteworthy and core contributors
 * Beautiful avatar display for noteworthy contributors
 * Links to WordPress.org profiles
@@ -59,6 +59,10 @@ The version selector is enabled by default. You can control its visibility using
 
 This feature was added in version 1.0.1.
 
+= What WordPress versions are supported? =
+
+The plugin supports displaying contributors from WordPress version 3.2 onwards, providing comprehensive coverage of WordPress's development history.
+
 = How often is the contributor data updated? =
 
 The plugin caches the data for 24 hours to ensure optimal performance.
@@ -68,6 +72,12 @@ The plugin caches the data for 24 hours to ensure optimal performance.
 Yes, you can override the default styles by adding custom CSS to your theme.
 
 == Changelog ==
+
+= 1.0.3 =
+* Enhanced version selector with support for WordPress versions from 3.2 onwards
+* Improved version management using WordPress.org API integration
+* Added comprehensive version support documentation
+* Optimized version fetching performance
 
 = 1.0.2 =
 * Enhanced API service with improved caching
@@ -82,6 +92,9 @@ Yes, you can override the default styles by adding custom CSS to your theme.
 * Initial release
 
 == Upgrade Notice ==
+
+= 1.0.3 =
+This update adds comprehensive support for WordPress versions from 3.2 onwards and improves the version selector functionality.
 
 = 1.0.0 =
 Initial release

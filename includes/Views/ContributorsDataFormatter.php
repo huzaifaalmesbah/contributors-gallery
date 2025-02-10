@@ -17,7 +17,7 @@ class ContributorsDataFormatter {
 	 *
 	 * @var WPVersionFetcher
 	 */
-	private $latest_version_fetcher;
+	private $wp_version_fetcher;
 
 	/**
 	 * Constructor
@@ -25,7 +25,7 @@ class ContributorsDataFormatter {
 	 * @since 1.0.2
 	 */
 	public function __construct() {
-		$this->latest_version_fetcher = new WPVersionFetcher();
+		$this->wp_version_fetcher = new WPVersionFetcher();
 	}
 
 	/**
@@ -42,7 +42,7 @@ class ContributorsDataFormatter {
 			'noteworthy_contributors' => $this->get_noteworthy_contributors( $data ),
 			'core_contributors'       => $this->get_core_contributors( $data ),
 			'version_switcher'        => $version_switcher,
-			'versions'                => $this->get_available_versions(),
+			'versions'                => $this->wp_version_fetcher->get_available_versions(),
 		);
 	}
 
@@ -67,24 +67,6 @@ class ContributorsDataFormatter {
 		}
 
 		return $all_noteworthy_contributors;
-	}
-
-	/**
-	 * Get available WordPress versions
-	 *
-	 * @return array
-	 */
-	private function get_available_versions() {
-		$latest_version = $this->latest_version_fetcher->get_latest_version();
-		$major_version  = (float) $latest_version;
-		$versions       = array();
-
-		// Add versions from 5.0 to current version
-		for ( $v = 5.0; $v <= $major_version; $v += 0.1 ) {
-			$versions[] = number_format( $v, 1 );
-		}
-
-		return $versions;
 	}
 
 	/**
