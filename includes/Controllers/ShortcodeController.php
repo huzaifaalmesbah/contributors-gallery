@@ -59,31 +59,36 @@ class ShortcodeController {
 	 * Enqueue styles
 	 */
 	public function enqueue_scripts() {
-		$file_modified_time = filemtime( WPCG_PLUGIN_DIR . 'assets/css/wpcg-styles.css' );
-		wp_enqueue_style(
-			'wpcg-styles',
-			WPCG_PLUGIN_URL . 'assets/css/wpcg-styles.css',
-			array(),
-			$file_modified_time
-		);
+		global $post;
 
-		$js_modified_time = filemtime( WPCG_PLUGIN_DIR . 'assets/js/wpcg-contributors-handler.js' );
-		wp_enqueue_script(
-			'wpcg-contributors-handler',
-			WPCG_PLUGIN_URL . 'assets/js/wpcg-contributors-handler.js',
-			array( 'jquery' ),
-			$js_modified_time,
-			true
-		);
+		// Only enqueue if post content contains the shortcode
+		if ( is_a( $post, 'WP_Post' ) && has_shortcode( $post->post_content, 'wpcg_contributors' ) ) {
+			$file_modified_time = filemtime( WPCG_PLUGIN_DIR . 'assets/css/wpcg-styles.css' );
+			wp_enqueue_style(
+				'wpcg-styles',
+				WPCG_PLUGIN_URL . 'assets/css/wpcg-styles.css',
+				array(),
+				$file_modified_time
+			);
 
-		wp_localize_script(
-			'wpcg-contributors-handler',
-			'wpcg_ajax',
-			array(
-				'ajax_url' => admin_url( 'admin-ajax.php' ),
-				'nonce'    => wp_create_nonce( 'wpcg_nonce' ),
-			)
-		);
+			$js_modified_time = filemtime( WPCG_PLUGIN_DIR . 'assets/js/wpcg-contributors-handler.js' );
+			wp_enqueue_script(
+				'wpcg-contributors-handler',
+				WPCG_PLUGIN_URL . 'assets/js/wpcg-contributors-handler.js',
+				array( 'jquery' ),
+				$js_modified_time,
+				true
+			);
+
+			wp_localize_script(
+				'wpcg-contributors-handler',
+				'wpcg_ajax',
+				array(
+					'ajax_url' => admin_url( 'admin-ajax.php' ),
+					'nonce'    => wp_create_nonce( 'wpcg_nonce' ),
+				)
+			);
+		}
 	}
 
 	/**

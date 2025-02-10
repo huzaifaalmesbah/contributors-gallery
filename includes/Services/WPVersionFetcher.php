@@ -74,14 +74,17 @@ class WPVersionFetcher {
 		}
 
 		$versions = array_keys( $data );
-		
+
 		// Filter to keep versions with one decimal point (x.y) and >= 3.2
-		$filtered_versions = array_filter($versions, function($version) {
-			if (!preg_match('/^\d+\.\d+$/', $version)) {
-				return false;
+		$filtered_versions = array_filter(
+			$versions,
+			function ( $version ) {
+				if ( ! preg_match( '/^\d+\.\d+$/', $version ) ) {
+					return false;
+				}
+				return version_compare( $version, '3.2', '>=' );
 			}
-			return version_compare($version, '3.2', '>=');
-		});
+		);
 
 		rsort( $filtered_versions, SORT_NATURAL );
 
