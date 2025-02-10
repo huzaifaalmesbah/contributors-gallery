@@ -36,12 +36,10 @@ class SearchView {
             ));
             
             if (empty($rendered_content)) {
-                error_log('WPCG Error: Empty content returned from template renderer');
                 return '<div class="wpcg-error">Error: Unable to render search form.</div>';
             }
             return $rendered_content;
         } catch (\Exception $e) {
-            error_log('WPCG Error: Failed to render search form - ' . $e->getMessage());
             return '<div class="wpcg-error">Error: Unable to render search form.</div>';
         }
     }
@@ -54,12 +52,8 @@ class SearchView {
      */
     public function render_search_results($results) {
         if (!isset($results['noteworthy_versions']) || !isset($results['core_versions'])) {
-            error_log('WPCG Debug: Invalid search results format');
             return '<div class="wpcg-error">' . esc_html__('Invalid search results format.', 'contributors-gallery') . '</div>';
         }
-
-        error_log('WPCG Debug: Preparing to render search results');
-        error_log('WPCG Debug: Results data - Noteworthy: ' . count($results['noteworthy_versions']) . ', Core: ' . count($results['core_versions']));
 
         ob_start();
         $results = array(
@@ -73,12 +67,6 @@ class SearchView {
         );
         include WPCG_PLUGIN_DIR . 'templates/partials/search-results.php';
         $output = ob_get_clean();
-
-        if (empty($output)) {
-            error_log('WPCG Error: No output generated from search results template');
-        } else {
-            error_log('WPCG Debug: Successfully rendered search results');
-        }
 
         return $output;
     }

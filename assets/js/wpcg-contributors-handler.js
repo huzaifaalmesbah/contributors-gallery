@@ -55,11 +55,11 @@
                         // Restore the version select value
                         container.find('.wpcg-version-select').val(selectedVersion);
                     } else {
-                        console.error('Error loading contributors:', response.data);
+                        // Handle error silently
                     }
                 },
                 error: (xhr, status, error) => {
-                    console.error('Ajax error:', error);
+                    // Handle error silently
                 },
                 complete: () => {
                     container.removeClass('loading');

@@ -1,88 +1,107 @@
 === Contributors Gallery ===
 Contributors: huzaifaalmesbah
-Tags: contributors, credits, core-contributors, wordpress-contributors
+Tags: contributors, credits, core-contributors, wordpress-contributors, contributor-search
 Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tested up to: 6.7
 
-Display WordPress version contributors beautifully with avatars and profile links.
+Display WordPress version contributors beautifully with avatars, profile links, and powerful search functionality.
 
 == Description ==
 
-WordPress Contributors Gallery is a powerful yet simple plugin that showcases the contributors who have made WordPress what it is today. The plugin fetches contributor data directly from WordPress.org and displays it in an elegant, responsive layout.
+WordPress Contributors Gallery is a powerful yet simple plugin that showcases the contributors who have made WordPress what it is today. The plugin fetches contributor data directly from WordPress.org and displays it in an elegant, responsive layout with comprehensive search capabilities.
 
-Features:
+= Key Features =
 
-* Display contributors for any WordPress version (from 3.2 onwards)
-* Interactive version selector with comprehensive version support
-* Separate sections for noteworthy and core contributors
-* Beautiful avatar display for noteworthy contributors
-* Links to WordPress.org profiles
-* Responsive design that works on all devices
-* Easy to use shortcode system with customizable options
-* Clean and modern design with smooth transitions
-* Lightweight and fast with built-in caching
-* AJAX-powered version switching without page reload
-* Search functionality to find specific contributors
+* **Comprehensive Display**: Show contributors from any WordPress version (3.2 onwards)
+* **Advanced Search**: Find specific contributor and view their contribution history
+* **Interactive Version Selector**: Switch between WordPress versions seamlessly
+* **Contributor Categories**:
+  * Noteworthy Contributors (Core & Contributing Developers)
+  * Core Contributors (Props)
+* **Rich Visual Elements**:
+  * Beautiful avatar display for noteworthy contributors
+  * WordPress.org profile links
+  * Responsive, modern design
+* **Performance Optimized**:
+  * Built-in 24-hour caching
+  * AJAX-powered version switching
+  * Lightweight implementation
 
-= Usage =
+= Available Shortcodes =
 
-To display contributors from the latest WordPress version, use the shortcode:
+1. Display Contributors List:
 `[wpcg_contributors]`
 
-To display contributors for a specific version:
-`[wpcg_contributors version="6.4"]`
-
-To control the version selector visibility (enabled by default):
-`[wpcg_contributors switcher="true"]` or `[wpcg_contributors switcher="false"]`
-
-Combine attributes:
-`[wpcg_contributors version="6.4" switcher="true"]`
-
-To display the contributor search form:
+2. Search Contributors:
 `[wpcg_contributor_search]`
+
+= Shortcode Parameters =
+
+The `[wpcg_contributors]` shortcode accepts the following parameters:
+
+* `version`: Specify WordPress version (e.g., "6.4")
+* `switcher`: Control version selector visibility ("true"/"false")
+
+Examples:
+```
+[wpcg_contributors version="6.4"]
+[wpcg_contributors switcher="false"]
+[wpcg_contributors version="6.4" switcher="true"]
+```
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/wpcg` directory, or install the plugin through the WordPress plugins screen directly.
-2. Activate the plugin through the 'Plugins' screen in WordPress
-3. Use the shortcode [wpcg_contributors] in your posts or pages
-4. To enable search functionality, use the shortcode [wpcg_contributor_search] on any page or post
+1. Upload the plugin files to the `/wp-content/plugins/contributors-gallery` directory, or install through WordPress plugins screen
+2. Activate the plugin through the 'Plugins' menu
+3. Use shortcodes to display contributors:
+   * `[wpcg_contributors]` - Display contributors list
+   * `[wpcg_contributor_search]` - Add search functionality
 
 == Frequently Asked Questions ==
 
-= How do I display contributors for a specific WordPress version? =
+= How does the contributor search work? =
 
-Use the version parameter in the shortcode: [wpcg_contributors version="6.4"]
+The search functionality allows users to find specific contributors across all WordPress versions. It displays:
+* Their display name and role (if available)
+* Noteworthy contributions (Core & Contributing Developer roles)
+* Core contributions (Props)
+* Total contribution count by category
 
-= How do I control the version selector visibility? =
+= How do I display contributors for a specific version? =
 
-The version selector is enabled by default. You can control its visibility using the switcher attribute:
-- To show the selector: [wpcg_contributors switcher="true"]
-- To hide the selector: [wpcg_contributors switcher="false"]
+Use the version parameter: `[wpcg_contributors version="6.4"]`
 
-This feature was added in version 1.0.1.
+= Can I control the version selector visibility? =
+
+Yes, use the switcher parameter:
+* Show selector: `[wpcg_contributors switcher="true"]`
+* Hide selector: `[wpcg_contributors switcher="false"]`
 
 = What WordPress versions are supported? =
 
-The plugin supports displaying contributors from WordPress version 3.2 onwards, providing comprehensive coverage of WordPress's development history.
+The plugin supports WordPress version 3.2 onwards, providing comprehensive coverage of WordPress's development history.
 
 = How often is the contributor data updated? =
 
-The plugin caches the data for 24 hours to ensure optimal performance.
+The plugin caches data for 24 hours to ensure optimal performance while maintaining data freshness.
 
-= Can I style the output differently? =
+= Can I customize the display styles? =
 
-Yes, you can override the default styles by adding custom CSS to your theme.
+Yes, you can override the default styles by adding custom CSS to your theme. The plugin uses clean, semantic HTML classes for easy styling.
 
 == Changelog ==
 
 = 1.1.0 =
-* Enhanced version selector with support for WordPress versions from 3.2 onwards
-* Improved version management using WordPress.org API integration
-* Added comprehensive version support documentation
+* Added contributor search functionality with comprehensive history display
+* Enhanced version selector with support from WordPress 3.2 onwards
+* Improved version management using WordPress.org API
+* Added natural version sorting for better organization
+* Added contributor version history in search results
+* Added WordPress.org profile links in search results
 * Optimized version fetching performance
+* Added comprehensive documentation
 
 = 1.0.2 =
 * Enhanced API service with improved caching
@@ -95,15 +114,5 @@ Yes, you can override the default styles by adding custom CSS to your theme.
 
 = 1.0.0 =
 * Initial release
-
-== Upgrade Notice ==
-
-= 1.1.0 =
-This update adds comprehensive support for WordPress versions from 3.2 onwards and improves the version selector functionality.
-
-= 1.0.0 =
-Initial release
-
-== Privacy Policy ==
-
-This plugin fetches data from WordPress.org's public API. It does not collect, store, or share any personal data from your website's users.
+* Basic contributors display functionality
+* Responsive design implementation

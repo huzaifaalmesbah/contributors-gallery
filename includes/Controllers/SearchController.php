@@ -121,8 +121,7 @@ class SearchController {
 
         if (empty($output)) {
             wp_send_json_error(array(
-                'message' => __('Error generating search results', 'contributors-gallery'),
-                'debug' => $results
+                'message' => __('Error generating search results', 'contributors-gallery')
             ));
         }
 

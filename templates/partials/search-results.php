@@ -10,13 +10,30 @@ if (!defined('ABSPATH')) exit;
 <div class="wpcg-search-results-content">
     <div class="wpcg-search-summary">
         <h3 class="wpcg-search-count"><?php
-            printf(
-                /* translators: 1: display name, 2: total noteworthy versions, 3: total core versions */
-                esc_html__('%1$s: %2$d Noteworthy and %3$d Core Contributions', 'contributors-gallery'),
-                esc_html($results['display_name']),
-                esc_html($results['total_noteworthy']),
-                esc_html($results['total_core'])
-            );
+            $output = '';
+            if ($results['total_noteworthy'] > 0) {
+                $output .= sprintf(
+                    /* translators: 1: display name, 2: total noteworthy versions */
+                    esc_html__('%1$s: %2$d Noteworthy ', 'contributors-gallery'),
+                    esc_html($results['display_name']),
+                    esc_html($results['total_noteworthy'])
+                );
+                if ($results['total_core'] > 0) {
+                    $output .= sprintf(
+                        /* translators: %d: total core versions */
+                        esc_html__(' and %d Core Contributions', 'contributors-gallery'),
+                        esc_html($results['total_core'])
+                    );
+                }
+            } elseif ($results['total_core'] > 0) {
+                $output .= sprintf(
+                    /* translators: 1: display name, 2: total core versions */
+                    esc_html__('%1$s: %2$d Core Contributions', 'contributors-gallery'),
+                    esc_html($results['display_name']),
+                    esc_html($results['total_core'])
+                );
+            }
+            echo $output;
         ?></h3>
         <a href="https://profiles.wordpress.org/<?php echo esc_attr($results['username']); ?>/" class="wpcg-profile-button" target="_blank">
             <?php esc_html_e('Visit WP Profile', 'contributors-gallery'); ?>
