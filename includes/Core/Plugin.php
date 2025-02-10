@@ -2,6 +2,7 @@
 namespace WPCG\Core;
 
 use WPCG\Controllers\ShortcodeController;
+use WPCG\Controllers\SearchController;
 
 /**
  * Main Plugin Class
@@ -40,5 +41,6 @@ class Plugin {
 	private function init_hooks() {
 		// Initialize controllers
 		new ShortcodeController();
+		new SearchController();
 	}
 }

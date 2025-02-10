@@ -24,6 +24,7 @@ Features:
 * Clean and modern design with smooth transitions
 * Lightweight and fast with built-in caching
 * AJAX-powered version switching without page reload
+* Search functionality to find specific contributors
 
 = Usage =
 
@@ -39,11 +40,15 @@ To control the version selector visibility (enabled by default):
 Combine attributes:
 `[wpcg_contributors version="6.4" switcher="true"]`
 
+To display the contributor search form:
+`[wpcg_contributor_search]`
+
 == Installation ==
 
 1. Upload the plugin files to the `/wp-content/plugins/wpcg` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress
 3. Use the shortcode [wpcg_contributors] in your posts or pages
+4. To enable search functionality, use the shortcode [wpcg_contributor_search] on any page or post
 
 == Frequently Asked Questions ==
 

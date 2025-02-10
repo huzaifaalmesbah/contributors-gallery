@@ -19,9 +19,14 @@ class TemplateRenderer {
 	 * @return string
 	 */
 	public function render_template( $template, $data ) {
+		error_log('WPCG Debug: Starting template render for: ' . $template);
 		ob_start();
 		$this->get_template( $template, $data );
-		return ob_get_clean();
+		$content = ob_get_clean();
+		if (empty($content)) {
+			error_log('WPCG Error: Empty content generated for template: ' . $template);
+		}
+		return $content;
 	}
 
 	/**
@@ -34,16 +39,20 @@ class TemplateRenderer {
 	 */
 	private function get_template( $template, $data ) {
 		$template_file = WPCG_PLUGIN_DIR . "templates/{$template}.php";
+		error_log('WPCG Debug: Loading template file: ' . $template_file);
 
 		if ( file_exists( $template_file ) ) {
-			// Pass data to template scope
-			$noteworthy_contributors = $data['noteworthy_contributors'] ?? array();
-			$core_contributors       = $data['core_contributors'] ?? array();
-			$version                 = $data['version'] ?? '';
-			$version_switcher        = $data['version_switcher'] ?? true;
-			$versions                = $data['versions'] ?? array();
+			// Extract data to template scope
+			extract($data);
 
-			include $template_file;
+			try {
+				include $template_file;
+				error_log('WPCG Debug: Successfully included template: ' . $template);
+			} catch (\Exception $e) {
+				error_log('WPCG Error: Failed to include template ' . $template . ' - ' . $e->getMessage());
+			}
+		} else {
+			error_log('WPCG Error: Template file not found: ' . $template_file);
 		}
 	}
 
@@ -56,22 +65,20 @@ class TemplateRenderer {
 	 */
 	public function get_template_partial( $partial, $data ) {
 		$partial_file = WPCG_PLUGIN_DIR . "templates/partials/{$partial}.php";
+		error_log('WPCG Debug: Loading partial template: ' . $partial_file);
 
 		if ( file_exists( $partial_file ) ) {
-			$contributors = $data['contributors'] ?? array();
-			include $partial_file;
-		}
-	}
+			// Extract data to template scope
+			extract($data);
 
-	/**
-	 * Render error message
-	 *
-	 * @return string
-	 */
-	public function render_error_message() {
-		return sprintf(
-			'<p class="wpcg-error">%s</p>',
-			esc_html__( 'Unable to fetch contributors data.', 'contributors-gallery' )
-		);
+			try {
+				include $partial_file;
+				error_log('WPCG Debug: Successfully included partial: ' . $partial);
+			} catch (\Exception $e) {
+				error_log('WPCG Error: Failed to include partial ' . $partial . ' - ' . $e->getMessage());
+			}
+		} else {
+			error_log('WPCG Error: Partial template file not found: ' . $partial_file);
+		}
 	}
 }
