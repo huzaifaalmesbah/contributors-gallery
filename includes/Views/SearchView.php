@@ -64,7 +64,8 @@ class SearchView {
         ob_start();
         $results = array(
             'total_count' => intval($results['total_count']),
-            'versions' => array_map('sanitize_text_field', $results['versions'])
+            'versions' => array_map('sanitize_text_field', $results['versions']),
+            'username' => isset($_POST['username']) ? sanitize_text_field($_POST['username']) : ''
         );
         include WPCG_PLUGIN_DIR . 'templates/partials/search-results.php';
         $output = ob_get_clean();

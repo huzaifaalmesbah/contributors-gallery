@@ -12,13 +12,14 @@ if (!defined('ABSPATH')) exit;
         <h3 class="wpcg-search-count">
             <?php
             printf(
-                /* translators: %d: number of WordPress versions */
+                /* translators: 1: username, 2: number of WordPress versions */
                 esc_html(_n(
-                    'Found in %d WordPress version',
-                    'Found in %d WordPress versions',
+                    '%1$s contributed to %2$d WordPress version',
+                    '%1$s contributed to %2$d WordPress versions',
                     $results['total_count'],
                     'contributors-gallery'
                 )),
+                esc_html($results['username']),
                 esc_html($results['total_count'])
             );
             ?>

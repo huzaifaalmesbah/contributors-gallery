@@ -101,14 +101,29 @@ class SearchController {
 
         $username = sanitize_text_field($_POST['username']);
         if (empty($username)) {
-            wp_send_json_error('Username is required');
+            wp_send_json_error(array(
+                'message' => __('Username is required', 'contributors-gallery')
+            ));
         }
 
         $results = $this->search_contributor($username);
+        
+        if (empty($results['versions'])) {
+            wp_send_json_error(array(
+                'message' => sprintf(
+                    __('No contributions found for %s', 'contributors-gallery'),
+                    $username
+                )
+            ));
+        }
+
         $output = $this->search_view->render_search_results($results);
 
         if (empty($output)) {
-            wp_send_json_error('No output generated for search results', array('debug' => $results));
+            wp_send_json_error(array(
+                'message' => __('Error generating search results', 'contributors-gallery'),
+                'debug' => $results
+            ));
         }
 
         wp_send_json_success($output);
