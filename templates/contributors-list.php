@@ -25,10 +25,9 @@ $version                 = $version ?? '';
 				<h2>
 					<?php
 					printf(
-						/* translators: 1: WordPress version, 2: Total contributors count */
-						esc_html__( 'WordPress %1$s Contributors (%2$s)', 'contributors-gallery' ),
-						esc_html( $version ),
-						esc_html( count( $noteworthy_contributors ) + count( $core_contributors ) )
+						/* translators: %s: WordPress version */
+						esc_html__( 'WordPress %s Contributors', 'contributors-gallery' ),
+						esc_html( $version )
 					);
 					?>
 				</h2>

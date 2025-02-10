@@ -1,7 +1,7 @@
 === Contributors Gallery ===
 Contributors: huzaifaalmesbah
 Tags: contributors, credits, core-contributors, wordpress-contributors, contributor-search
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tested up to: 6.7
@@ -11,6 +11,8 @@ Display WordPress version contributors beautifully with avatars, profile links, 
 == Description ==
 
 WordPress Contributors Gallery is a powerful yet simple plugin that showcases the contributors who have made WordPress what it is today. The plugin fetches contributor data directly from WordPress.org and displays it in an elegant, responsive layout with comprehensive search capabilities.
+
+https://www.youtube.com/watch?v=somoJEeQcuE
 
 = Key Features =
 
@@ -32,10 +34,14 @@ WordPress Contributors Gallery is a powerful yet simple plugin that showcases th
 = Available Shortcodes =
 
 1. Display Contributors List:
-`[wpcg_contributors]`
+```
+[wpcg_contributors]
+```
 
 2. Search Contributors:
-`[wpcg_contributor_search]`
+```
+[wpcg_contributor_search]
+```
 
 = Shortcode Parameters =
 
@@ -48,16 +54,33 @@ Examples:
 ```
 [wpcg_contributors version="6.4"]
 [wpcg_contributors switcher="false"]
+[wpcg_contributors version="6.4" switcher="false"]
 [wpcg_contributors version="6.4" switcher="true"]
 ```
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/contributors-gallery` directory, or install through WordPress plugins screen
-2. Activate the plugin through the 'Plugins' menu
-3. Use shortcodes to display contributors:
+= Installation via WordPress Dashboard: =
+1. Go to the WordPress dashboard
+2. Navigate to **Plugins > Add New**
+3. Search for "Contributors Gallery"
+4. Click on the **Install** button
+5. Activate the plugin after installation
+
+= Installation via Zip File: =
+1. Download the **Contributors Gallery** plugin zip file
+2. Go to **Plugins > Add New > Upload Plugin**
+3. Upload `contributors-gallery.zip` and install it
+4. Activate the plugin
+
+= Using the Plugin: =
+1. Add contributors gallery using shortcodes:
    * `[wpcg_contributors]` - Display contributors list
    * `[wpcg_contributor_search]` - Add search functionality
+2. Customize display using shortcode parameters:
+   * Set specific version: `[wpcg_contributors version="6.4"]`
+   * Control version switcher: `[wpcg_contributors switcher="false"]`
+
 
 == Frequently Asked Questions ==
 
@@ -91,7 +114,21 @@ The plugin caches data for 24 hours to ensure optimal performance while maintain
 
 Yes, you can override the default styles by adding custom CSS to your theme. The plugin uses clean, semantic HTML classes for easy styling.
 
+== Check out our other Plugins ==
+- **[Smart Password Protect](https://wordpress.org/plugins/smart-password-protect/)** - Secure your WordPress site with password protection and IP whitelisting.
+- **[Random Quote](https://wordpress.org/plugins/random-quote/)** - *Display a random quote on your site, inspiring visitors with fresh content every time they refresh the page.*
+- **[Redirect After Logout](https://wordpress.org/plugins/redirect-after-logout/)** - *Seamlessly redirect users to a custom page after logging out, enhancing user experience on your WordPress site.*
+- **[Product Spotlight Badge](https://wordpress.org/plugins/product-spotlight-badge/)** - Highlight special products with a customizable spotlight badge on your WooCommerce store.
+
 == Changelog ==
+= 1.1.1 =
+* Enhanced layout and visual presentation
+* Improved spacing and alignment of contributor elements
+* Added consistent padding and margins
+* Optimized grid layout for better responsiveness
+* Refined avatar display and text formatting
+* Added subtle hover effects for better interactivity
+* Fixed minor visual inconsistencies
 
 = 1.1.0 =
 * Added contributor search functionality with comprehensive history display

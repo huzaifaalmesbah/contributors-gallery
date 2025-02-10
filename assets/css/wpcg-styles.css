@@ -90,9 +90,10 @@
     box-shadow: 0 0 0 3px rgba(74, 85, 104, 0.1);
 }
 
-.wpcg-version-list,
-.bsingle__content .wpcg-version-list,
-.pages-content .wpcg-version-list {
+.wpcg-header-controls .wpcg-version-list,
+.bsingle__content .wpcg-header-controls .wpcg-version-list,
+.pages-content .wpcg-header-controls .wpcg-version-list,
+.single-content .wpcg-header-controls .wpcg-version-list {
     position: absolute;
     top: 100%;
     left: 0;
@@ -202,13 +203,21 @@
     }
 }
 
-.wpcg-contributor-item {
+.wpcg-contributor-item,
+.entry-content .wpcg-contributor-item,
+.page-content .wpcg-contributor-item,
+.post-content .wpcg-contributor-item {
     text-align: center;
     padding: 1rem;
     background: #ffffff;
     border-radius: 0.375rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
 }
 
 .wpcg-contributor-item:hover {
@@ -216,20 +225,29 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.wpcg-avatar {
+.wpcg-avatar,
+.entry-content .wpcg-avatar,
+.page-content .wpcg-avatar,
+.post-content .wpcg-avatar {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    margin-bottom: 0.625rem;
+    margin: 0 auto 0.625rem;
     border: 3px solid #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: block;
 }
 
-.wpcg-contributor-item h4 {
+.wpcg-contributor-item h4,
+.entry-content .wpcg-contributor-item h4,
+.page-content .wpcg-contributor-item h4,
+.post-content .wpcg-contributor-item h4 {
     margin: 0.5rem 0;
     font-size: 0.875rem;
     color: #333;
     line-height: 1.4;
+    text-align: center;
+    width: 100%;
 }
 
 .wpcg-contributor-item h4 a {
@@ -243,11 +261,16 @@
     text-decoration: underline;
 }
 
-.wpcg-role {
+.wpcg-role,
+.entry-content .wpcg-role,
+.page-content .wpcg-role,
+.post-content .wpcg-role {
     display: block;
     font-size: 0.75rem;
     color: #666;
     margin-top: 0.3125rem;
+    text-align: center;
+    width: 100%;
 }
 
 .wpcg-contributors-inline {

@@ -2,11 +2,12 @@
 /**
  * Plugin Name: Contributors Gallery
  * Plugin URI: https://wordpress.org/plugins/contributors-gallery/
+ * Author: Huzaifa Al Mesbah
+ * Author URI: https://www.linkedin.com/in/huzaifaalmesbah/
  * Description: Display WordPress contributors in a beautiful gallery with version switcher.
- * Version: 1.1.0
+ * Version: 1.1.1
  * Requires at least: 5.2
  * Requires PHP: 7.2
- * Author: Huzaifa Al Mesbah
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: contributors-gallery
@@ -19,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Define plugin constants
-define( 'WPCG_VERSION', '1.1.0' );
+define( 'WPCG_VERSION', '1.1.1' );
 define( 'WPCG_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'WPCG_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 

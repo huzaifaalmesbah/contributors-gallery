@@ -11,34 +11,36 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <div class="wpcg-search-results-content">
 	<div class="wpcg-search-summary">
-		<h3 class="wpcg-search-count">
-		<?php
-			$output = '';
-		if ( $results['total_noteworthy'] > 0 ) {
-			$output .= sprintf(
-				/* translators: 1: display name, 2: total noteworthy versions */
-				esc_html__( '%1$s: %2$d Noteworthy ', 'contributors-gallery' ),
-				esc_html( $results['display_name'] ),
-				esc_html( $results['total_noteworthy'] )
-			);
-			if ( $results['total_core'] > 0 ) {
+		<div class="wpcg-search-info">
+			<h3 class="wpcg-search-count">
+			<?php
+				$output = '';
+			if ( $results['total_noteworthy'] > 0 ) {
 				$output .= sprintf(
-					/* translators: %d: total core versions */
-					esc_html__( ' and %d Core Contributions', 'contributors-gallery' ),
+					/* translators: 1: display name, 2: total noteworthy versions */
+					esc_html__( '%1$s: %2$d Noteworthy ', 'contributors-gallery' ),
+					esc_html( $results['display_name'] ),
+					esc_html( $results['total_noteworthy'] )
+				);
+				if ( $results['total_core'] > 0 ) {
+					$output .= sprintf(
+						/* translators: %d: total core versions */
+						esc_html__( ' and %d Core Contributions', 'contributors-gallery' ),
+						esc_html( $results['total_core'] )
+					);
+				}
+			} elseif ( $results['total_core'] > 0 ) {
+				$output .= sprintf(
+					/* translators: 1: display name, 2: total core versions */
+					esc_html__( '%1$s: %2$d Core Contributions', 'contributors-gallery' ),
+					esc_html( $results['display_name'] ),
 					esc_html( $results['total_core'] )
 				);
 			}
-		} elseif ( $results['total_core'] > 0 ) {
-			$output .= sprintf(
-				/* translators: 1: display name, 2: total core versions */
-				esc_html__( '%1$s: %2$d Core Contributions', 'contributors-gallery' ),
-				esc_html( $results['display_name'] ),
-				esc_html( $results['total_core'] )
-			);
-		}
-			echo esc_html( $output );
-		?>
-		</h3>
+				echo esc_html( $output );
+			?>
+			</h3>
+		</div>
 		<a href="https://profiles.wordpress.org/<?php echo esc_attr( $results['username'] ); ?>/" class="wpcg-profile-button" target="_blank">
 			<?php esc_html_e( 'Visit WP Profile', 'contributors-gallery' ); ?>
 		</a>
