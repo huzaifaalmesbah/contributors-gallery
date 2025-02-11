@@ -1,16 +1,18 @@
-=== Contributors Gallery ===
+=== Contributors Gallery – The Ultimate WordPress Contributors Showcase ===
 Contributors: huzaifaalmesbah
-Tags: contributors, credits, core-contributors, wordpress-contributors, contributor-search
+Tags: contributors gallery, wordpress contributors, contributor showcase, wordpress credits
 Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tested up to: 6.7
 
-Display WordPress version contributors beautifully with avatars, profile links, and powerful search functionality.
+Display WordPress contributors beautifully with live profiles, avatars, and powerful search. Showcase the people who make WordPress great.
 
 == Description ==
 
-WordPress Contributors Gallery is a powerful yet simple plugin that showcases the contributors who have made WordPress what it is today. The plugin fetches contributor data directly from WordPress.org and displays it in an elegant, responsive layout with comprehensive search capabilities.
+= WordPress Contributors Gallery – The Ultimate Solution for Showcasing WordPress Contributors =
+
+Contributors Gallery is the most comprehensive WordPress plugin for displaying and managing WordPress version contributors. Our plugin seamlessly integrates with WordPress.org to showcase contributors through elegant profiles, advanced search capabilities, and dynamic version filtering.
 
 https://www.youtube.com/watch?v=somoJEeQcuE
 
@@ -75,8 +77,8 @@ Examples:
 
 = Using the Plugin: =
 1. Add contributors gallery using shortcodes:
-   * `[wpcg_contributors]` - Display contributors list
-   * `[wpcg_contributor_search]` - Add search functionality
+   * `[wpcg_contributors]` – Display contributors list
+   * `[wpcg_contributor_search]` – Add search functionality
 2. Customize display using shortcode parameters:
    * Set specific version: `[wpcg_contributors version="6.4"]`
    * Control version switcher: `[wpcg_contributors switcher="false"]`
@@ -115,10 +117,10 @@ The plugin caches data for 24 hours to ensure optimal performance while maintain
 Yes, you can override the default styles by adding custom CSS to your theme. The plugin uses clean, semantic HTML classes for easy styling.
 
 == Check out our other Plugins ==
-- **[Smart Password Protect](https://wordpress.org/plugins/smart-password-protect/)** - Secure your WordPress site with password protection and IP whitelisting.
-- **[Random Quote](https://wordpress.org/plugins/random-quote/)** - *Display a random quote on your site, inspiring visitors with fresh content every time they refresh the page.*
-- **[Redirect After Logout](https://wordpress.org/plugins/redirect-after-logout/)** - *Seamlessly redirect users to a custom page after logging out, enhancing user experience on your WordPress site.*
-- **[Product Spotlight Badge](https://wordpress.org/plugins/product-spotlight-badge/)** - Highlight special products with a customizable spotlight badge on your WooCommerce store.
+– **[Smart Password Protect](https://wordpress.org/plugins/smart-password-protect/)** – Secure your WordPress site with password protection and IP whitelisting.
+– **[Random Quote](https://wordpress.org/plugins/random-quote/)** – *Display a random quote on your site, inspiring visitors with fresh content every time they refresh the page.*
+– **[Redirect After Logout](https://wordpress.org/plugins/redirect-after-logout/)** – *Seamlessly redirect users to a custom page after logging out, enhancing user experience on your WordPress site.*
+– **[Product Spotlight Badge](https://wordpress.org/plugins/product-spotlight-badge/)** – Highlight special products with a customizable spotlight badge on your WooCommerce store.
 
 == Changelog ==
 = 1.2.0 =
