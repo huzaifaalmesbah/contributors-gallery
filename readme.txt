@@ -1,7 +1,7 @@
 === Contributors Gallery ===
 Contributors: huzaifaalmesbah
 Tags: contributors, credits, core-contributors, wordpress-contributors, contributor-search
-Stable tag: 1.1.1
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Tested up to: 6.7
@@ -121,6 +121,13 @@ Yes, you can override the default styles by adding custom CSS to your theme. The
 - **[Product Spotlight Badge](https://wordpress.org/plugins/product-spotlight-badge/)** - Highlight special products with a customizable spotlight badge on your WooCommerce store.
 
 == Changelog ==
+= 1.2.0 =
+* Added WordPress.org profile integration
+* Enhanced contributor profiles with detailed metadata
+* Added avatar hash extraction from WordPress.org profiles
+* Added comprehensive profile service documentation
+* Enhanced contributor search results with profile data
+
 = 1.1.1 =
 * Enhanced layout and visual presentation
 * Improved spacing and alignment of contributor elements

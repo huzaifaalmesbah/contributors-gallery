@@ -60,7 +60,7 @@ class SearchView {
 
 		ob_start();
 		$profile_data = isset( $results['profile'] ) ? $results['profile'] : array();
-		$results = array(
+		$results      = array(
 			'username'            => sanitize_text_field( $results['username'] ),
 			'display_name'        => sanitize_text_field( $results['display_name'] ),
 			'role'                => sanitize_text_field( $results['role'] ),
@@ -85,7 +85,7 @@ class SearchView {
 	 */
 	private function sanitize_meta_item( $meta_item ) {
 		return array(
-			'label' => isset( $meta_item['label'] ) ? sanitize_text_field( $meta_item['label'] ) : '',
+			'label' => isset( $meta_item['label'] ) ? rtrim( sanitize_text_field( $meta_item['label'] ), ':' ) : '',
 			'value' => isset( $meta_item['value'] ) ? sanitize_text_field( $meta_item['value'] ) : '',
 		);
 	}

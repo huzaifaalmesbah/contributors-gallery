@@ -11,14 +11,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <div class="wpcg-search-container">
-	<h2 class="wpcg-search-heading">
-		<?php esc_html_e( 'Find WordPress Core Contributor', 'contributors-gallery' ); ?>
-	</h2>
-	<p class="wpcg-search-description">
-		<?php esc_html_e( 'Search for WordPress.org users who contributed to core development.', 'contributors-gallery' ); ?>
-	</p>
+	<h3 class="wpcg-search-heading">
+		<?php esc_html_e( 'WordPress Core Contributor Explorer', 'contributors-gallery' ); ?>
+	</h3>
 
-	<form id="wpcg-contributor-search" class="wpcg-search-form">
+	<form id="wpcg-contributor-search" class="wpcg-search-form" autocomplete="off">
 		<div class="wpcg-search-input-wrapper">
 			<input type="text" 
 					id="wpcg-search-input" 

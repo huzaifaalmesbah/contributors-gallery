@@ -4,8 +4,8 @@
  * Plugin URI: https://wordpress.org/plugins/contributors-gallery/
  * Author: Huzaifa Al Mesbah
  * Author URI: https://www.linkedin.com/in/huzaifaalmesbah/
- * Description: Display WordPress contributors in a beautiful gallery with version switcher.
- * Version: 1.1.1
+ * Description: Display WordPress contributors in a beautiful gallery with version switcher and powerful search functionality.
+ * Version: 1.2.0
  * Requires at least: 5.2
  * Requires PHP: 7.2
  * License: GPL v2 or later
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Define plugin constants
-define( 'WPCG_VERSION', '1.1.1' );
+define( 'WPCG_VERSION', '1.2.0' );
 define( 'WPCG_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'WPCG_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
