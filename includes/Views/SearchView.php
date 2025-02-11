@@ -59,6 +59,7 @@ class SearchView {
 		}
 
 		ob_start();
+		$profile_data = isset( $results['profile'] ) ? $results['profile'] : array();
 		$results = array(
 			'username'            => sanitize_text_field( $results['username'] ),
 			'display_name'        => sanitize_text_field( $results['display_name'] ),
@@ -67,10 +68,25 @@ class SearchView {
 			'core_versions'       => array_map( 'sanitize_text_field', $results['core_versions'] ),
 			'total_noteworthy'    => count( $results['noteworthy_versions'] ),
 			'total_core'          => count( $results['core_versions'] ),
+			'avatar_hash'         => isset( $profile_data['avatar_hash'] ) ? sanitize_text_field( $profile_data['avatar_hash'] ) : '',
+			'meta_items'          => isset( $profile_data['meta_items'] ) ? array_map( array( $this, 'sanitize_meta_item' ), $profile_data['meta_items'] ) : array(),
 		);
 		include WPCG_PLUGIN_DIR . 'templates/partials/search-results.php';
 		$output = ob_get_clean();
 
 		return $output;
+	}
+
+	/**
+	 * Sanitize meta item array
+	 *
+	 * @param array $meta_item Meta item array with label and value.
+	 * @return array Sanitized meta item
+	 */
+	private function sanitize_meta_item( $meta_item ) {
+		return array(
+			'label' => isset( $meta_item['label'] ) ? sanitize_text_field( $meta_item['label'] ) : '',
+			'value' => isset( $meta_item['value'] ) ? sanitize_text_field( $meta_item['value'] ) : '',
+		);
 	}
 }

@@ -3,6 +3,7 @@ namespace WPCG\Controllers;
 
 use WPCG\Services\WPVersionFetcher;
 use WPCG\Services\ApiService;
+use WPCG\Services\ProfileService;
 use WPCG\Views\SearchView;
 
 /**
@@ -36,12 +37,20 @@ class SearchController {
 	private $search_view;
 
 	/**
+	 * ProfileService instance
+	 *
+	 * @var ProfileService
+	 */
+	private $profile_service;
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {
-		$this->version_fetcher = new WPVersionFetcher();
-		$this->api_service     = new ApiService();
-		$this->search_view     = new SearchView();
+		$this->version_fetcher  = new WPVersionFetcher();
+		$this->api_service      = new ApiService();
+		$this->search_view      = new SearchView();
+		$this->profile_service  = new ProfileService();
 		$this->init();
 	}
 
@@ -181,6 +190,8 @@ class SearchController {
 			}
 		}
 
+		$profile_data = $this->profile_service->get_profile_data( $username );
+
 		return array(
 			'username'            => $username,
 			'display_name'        => $display_name ? $display_name : $username,
@@ -189,6 +200,7 @@ class SearchController {
 			'core_versions'       => $core_versions,
 			'total_noteworthy'    => count( $noteworthy_versions ),
 			'total_core'          => count( $core_versions ),
+			'profile'            => $profile_data,
 		);
 	}
 }
